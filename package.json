@@ -33,12 +33,6 @@
     "gulp-nsp": "^2.1.0",
     "gulp-plumber": "^1.0.0"
   },
-  "eslintConfig": {
-    "extends": "xo-space",
-    "env": {
-      "mocha": true
-    }
-  },
   "repository": "eoko/node-api-problem",
   "scripts": {
     "prepublish": "gulp prepublish",
