@@ -9,6 +9,11 @@ const nsp = require('gulp-nsp');
 const plumber = require('gulp-plumber');
 const coveralls = require('gulp-coveralls');
 
+function handleError(err) {
+  console.log(err.toString());
+  this.emit('end');
+}
+
 gulp.task('static', () => gulp.src('**/*.js')
     .pipe(excludeGitignore())
     .pipe(eslint())
@@ -32,10 +37,7 @@ gulp.task('test', ['pre-test'], (cb) => {
   gulp.src('test/**/*.js')
     .pipe(plumber())
     .pipe(mocha({ reporter: 'spec' }))
-    .on('error', (err) => {
-      mochaErr = err;
-      cb(mochaErr);
-    })
+    .on('error', handleError)
     .pipe(istanbul.writeReports())
     .on('end', () => cb(mochaErr));
 });
