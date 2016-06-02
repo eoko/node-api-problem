@@ -39,7 +39,7 @@
       "mocha": true
     }
   },
-  "repository": "iam-merlin/node-api-problem",
+  "repository": "eoko/node-api-problem",
   "scripts": {
     "prepublish": "gulp prepublish",
     "test": "gulp"

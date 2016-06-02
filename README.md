@@ -169,9 +169,9 @@ MIT © [Romain DARY &lt;romain.dary@eoko.fr&gt; http://eoko.fr](http://eoko.fr)
 
 [npm-image]: https://badge.fury.io/js/node-api-problem.svg
 [npm-url]: https://npmjs.org/package/node-api-problem
-[travis-image]: https://travis-ci.org/iam-merlin/node-api-problem.svg?branch=master
-[travis-url]: https://travis-ci.org/iam-merlin/node-api-problem
-[daviddm-image]: https://david-dm.org/iam-merlin/node-api-problem.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/iam-merlin/node-api-problem
-[coveralls-image]: https://coveralls.io/repos/iam-merlin/node-api-problem/badge.svg
-[coveralls-url]: https://coveralls.io/r/iam-merlin/node-api-problem
+[travis-image]: https://travis-ci.org/eoko/node-api-problem.svg?branch=master
+[travis-url]: https://travis-ci.org/eoko/node-api-problem
+[daviddm-image]: https://david-dm.org/eoko/node-api-problem.svg?theme=shields.io
+[daviddm-url]: https://david-dm.org/eoko/node-api-problem
+[coveralls-image]: https://coveralls.io/repos/eoko/node-api-problem/badge.svg
+[coveralls-url]: https://coveralls.io/r/eoko/node-api-problem
