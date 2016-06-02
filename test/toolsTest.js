@@ -15,12 +15,13 @@ describe('Absolute URI definition', () => {
 
 describe('Constant definition', () => {
   it('A constant can be hidden from enumerable', () => {
-    let object = {};
+    let i;
+    const object = {};
 
     Tools.constant(object, 'hidden', '42', true);
     Tools.constant(object, 'show', '42', false);
 
-    for (var i in object) {
+    for (i in object) {
       if ({}.hasOwnProperty.call(object, i)) {
         i.should.be.equal('show');
         object[i].should.be.equal('42');
@@ -31,14 +32,14 @@ describe('Constant definition', () => {
   });
 
   it('A constant can be initialize', () => {
-    let object = {};
+    const object = {};
 
     Tools.constant(object, 'value', '42');
     object.value.should.be.equal('42');
   });
 
   it('A constant is immutable', () => {
-    let object = {};
+    const object = {};
 
     Tools.constant(object, 'immutable', '42');
 
