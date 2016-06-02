@@ -2,8 +2,9 @@
 
 const status = require('http-status');
 const _ = require('lodash');
+const should = require('chai').should;
 
-require('chai').should();
+should();
 
 const ApiProblem = require('../lib/apiProblem');
 const ProblemType = require('../lib/problemType');
@@ -16,6 +17,23 @@ const uri4 = 'http://api.doc4';
 describe('New API Problem definition', () => {
   it('An API Problem should reference a Type', () => {
     (new ApiProblem(uri)).type.should.be.equal(uri);
+    (() => new ApiProblem('http://sample.com/2', { status: 1 })).should.throw();
+    (() => new ApiProblem(null)).should.throw();
+  });
+
+  it('An API Problem can reference an instance', () => {
+    const ap = new ApiProblem(uri);
+    ap.instance = 'sample';
+    ap.instance.should.be.equal('sample');
+
+    ap.instance = undefined;
+    should().not.exist(ap.instance);
+
+    ap.detail = 'sample';
+    ap.detail.should.be.equal('sample');
+
+    ap.detail = undefined;
+    should().not.exist(ap.detail);
   });
 
   it('An API Problem can reference a previously created Type', () => {
@@ -31,9 +49,23 @@ describe('New API Problem definition', () => {
     ApiProblem.registerProblemType(uri, 'coucou');
     (ApiProblem.lookupProblemType(uri)).type.should.be.equal(uri);
 
+    ApiProblem.registerProblemType('http://sample.com');
+    (ApiProblem.lookupProblemType('http://sample.com')).type.should.be.equal('http://sample.com');
+
+    (() => ApiProblem.registerProblemType(42, 'coucou')).should.throw();
+
     const pt = new ProblemType(uri3);
     ApiProblem.registerProblemType(pt);
     (ApiProblem.lookupProblemType(uri3)).type.should.be.equal(uri3);
+
+    (new ApiProblem('http://sample.com/with/options', { status: 404, detail: 'Wow', instance: {}, title: 'nothing' })).status.should.equal(404);
+
+    ApiProblem.forStatus(404).status.should.be.equal(404);
+  });
+
+  it('An API problem can override type', () => {
+    ApiProblem.OK.constant('magic', 42);
+    ApiProblem.OK.magic.should.be.equal(42);
   });
 
   it('An API Problem must reference usual HTTP Problem', () => {
@@ -106,13 +138,13 @@ describe('New API Problem definition', () => {
 
   it('An API Problem should be nicely format for JSON string', () => {
     const ap = new ApiProblem(uri);
-    (JSON.stringify(ap)).should.be.equal('{"type":"http://api.doc1","title":"coucou","status":507}');
+    (JSON.stringify(ap)).should.be.equal('{"type":"http://api.doc1","title":"coucou"}');
     (JSON.stringify(ApiProblem.GONE)).should.be.equal('{"type":"http://www.iana.org/assignments/http-status-codes#410","title":"Gone","status":410}');
   });
 
   it('An API Problem should be nicely format for string', () => {
     const ap = new ApiProblem(uri);
-    (String(ap)).should.be.equal('HTTP-Problem: [507] coucou > http://api.doc1'); // don't forget that `uri` has been defined previously.
+    (String(ap)).should.be.equal('HTTP-Problem: [undefined] coucou > http://api.doc1'); // don't forget that `uri` has been defined previously.
     (String(ApiProblem.GONE)).should.be.equal('HTTP-Problem: [410] Gone > http://www.iana.org/assignments/http-status-codes#410');
   });
 });
