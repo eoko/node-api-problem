@@ -1,0 +1,52 @@
+{
+  "name": "node-api-problem",
+  "version": "0.0.0",
+  "description": "Http Api Problem Utility",
+  "homepage": "",
+  "author": {
+    "name": "Romain DARY <romain.dary@eoko.fr> http://eoko.fr",
+    "email": "romain.dary@eoko.fr",
+    "url": "http://eoko.fr"
+  },
+  "files": [
+    "lib"
+  ],
+  "main": "lib/apiProblem.js",
+  "keywords": [
+    ""
+  ],
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^2.11.1",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-config-xo-space": "^0.13.0",
+    "eslint-plugin-import": "^1.8.1",
+    "eslint-plugin-jsx-a11y": "^1.2.3",
+    "eslint-plugin-react": "^5.1.1",
+    "gulp": "^3.9.0",
+    "gulp-coveralls": "^0.1.0",
+    "gulp-eslint": "^2.0.0",
+    "gulp-exclude-gitignore": "^1.0.0",
+    "gulp-istanbul": "^0.10.3",
+    "gulp-line-ending-corrector": "^1.0.1",
+    "gulp-mocha": "^2.0.0",
+    "gulp-nsp": "^2.1.0",
+    "gulp-plumber": "^1.0.0"
+  },
+  "eslintConfig": {
+    "extends": "xo-space",
+    "env": {
+      "mocha": true
+    }
+  },
+  "repository": "iam-merlin/node-api-problem",
+  "scripts": {
+    "prepublish": "gulp prepublish",
+    "test": "gulp"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "http-status": "^0.2.3",
+    "lodash": "^4.13.1"
+  }
+}
